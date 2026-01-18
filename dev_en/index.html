@@ -275,31 +275,34 @@
       <div class="section">
         <div class="section-title">(2) ADD VERIFICA GOVBR TO YOUR PROJECT</div>
         <div class="section-divider"></div>
-        <div class="code-block">
-          <pre>$ npm install @govbr/verifica-govbr-widget</pre>
-        </div>
-        <div class="copy-btn-container">
-          <button class="copy-btn" onclick="copyText('npm install @govbr/verifica-govbr-widget', this)">Copy code</button>
-        </div>
-
-        <p class="section-desc" style="margin-top: 1.5rem;">
+        <p class="section-desc">
           To initialize VERIFICA GOVBR, copy and paste this code snippet in all
-          pages or in a common component where the widget should appear.
+          pages where the widget should appear.
         </p>
         <p class="warning">⚠ This configuration must be done in the verifier's code.</p>
         <div class="code-block">
-          <pre>import VerificaGovBR from '@govbr/verifica-govbr-widget';
+          <pre>&lt;script&gt;
+  window.verificaGovBRSettings = {
+    api_base: "https://api.verifica.gov.br",
+    app_id: "lrG7891Wrtt",
+  };
+&lt;/script&gt;
 
-VerificaGovBR({
-  app_id: 'lrG7891Wrtt', // application identifier
-});</pre>
+&lt;script&gt;
+  (function(){var w=window;var vg=w.VerificaGovBR;if(typeof vg==="function"){vg('reattach_activator');vg('update',w.verificaGovBRSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.VerificaGovBR=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.verifica.gov.br/widget/lrG7891Wrtt';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+&lt;/script&gt;</pre>
         </div>
         <div class="copy-btn-container">
-          <button class="copy-btn" onclick="copyText(`import VerificaGovBR from '@govbr/verifica-govbr-widget';
+          <button class="copy-btn" onclick="copyText(`<script>
+  window.verificaGovBRSettings = {
+    api_base: &quot;https://api.verifica.gov.br&quot;,
+    app_id: &quot;lrG7891Wrtt&quot;,
+  };
+</script>
 
-VerificaGovBR({
-  app_id: 'lrG7891Wrtt', // application identifier
-});`, this)">Copy code</button>
+<script>
+  (function(){var w=window;var vg=w.VerificaGovBR;if(typeof vg===&quot;function&quot;){vg('reattach_activator');vg('update',w.verificaGovBRSettings);}else{var d=document;var i=function(){i.c(arguments);};i.q=[];i.c=function(args){i.q.push(args);};w.VerificaGovBR=i;var l=function(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.verifica.gov.br/widget/lrG7891Wrtt';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);};if(document.readyState==='complete'){l();}else if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();
+</script>`, this)">Copy code</button>
         </div>
       </div>
     </div>
