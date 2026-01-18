@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Install Verifica GovBR</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #fff;
+      color: #000;
+      font-family: monospace;
+      padding: 2rem;
+      line-height: 1.6;
+    }
+
+    .header {
+      border: 4px solid #000;
+      padding: 1.5rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .header h1 {
+      font-size: 1.5rem;
+      letter-spacing: 0.1em;
+    }
+
+    .panels {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .panel-btn {
+      flex: 1;
+      background: #fff;
+      color: #000;
+      border: 4px solid #000;
+      padding: 1.5rem;
+      cursor: pointer;
+      font-family: monospace;
+      font-size: 1rem;
+      text-align: center;
+    }
+
+    .panel-btn.active {
+      background: #000;
+      color: #fff;
+    }
+
+    .panel-btn:hover {
+      background: #ddd;
+      color: #000;
+    }
+
+    .panel-btn.active:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .panel-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .panel-status {
+      font-size: 0.8rem;
+      opacity: 0.7;
+    }
+
+    .selection-indicator {
+      text-align: center;
+      margin-bottom: 2rem;
+      opacity: 0.7;
+    }
+
+    .content {
+      border: 4px solid #000;
+      padding: 2rem;
+    }
+
+    .section {
+      margin-bottom: 2.5rem;
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+
+    .section-divider {
+      border-bottom: 2px solid #000;
+      margin-bottom: 1rem;
+    }
+
+    .section-desc {
+      margin-bottom: 1rem;
+      opacity: 0.9;
+    }
+
+    .code-block {
+      background: #f5f5f5;
+      border: 2px solid #000;
+      padding: 1rem;
+      margin-bottom: 0.5rem;
+      overflow-x: auto;
+      position: relative;
+    }
+
+    .code-block pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+
+    .code-row {
+      display: flex;
+      margin-bottom: 0.3rem;
+    }
+
+    .code-label {
+      width: 120px;
+      flex-shrink: 0;
+      opacity: 0.7;
+    }
+
+    .code-value {
+      flex: 1;
+    }
+
+    .copy-btn-container {
+      text-align: right;
+      margin-top: 0.5rem;
+    }
+
+    .copy-btn {
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+      padding: 0.5rem 1rem;
+      font-family: monospace;
+      cursor: pointer;
+      font-size: 0.9rem;
+    }
+
+    .copy-btn:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .copy-btn.copied {
+      background: #0f0;
+      color: #000;
+      border-color: #0f0;
+    }
+
+    .warning {
+      color: #b30000;
+      margin-bottom: 1rem;
+      font-weight: bold;
+    }
+
+    .platform-tabs {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .platform-btn {
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+      padding: 0.5rem 1.5rem;
+      font-family: monospace;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+
+    .platform-btn.active {
+      background: #000;
+      color: #fff;
+    }
+
+    .platform-btn:hover {
+      background: #ddd;
+    }
+
+    .platform-btn.active:hover {
+      background: #000;
+      color: #fff;
+    }
+
+    .platform-content {
+      display: none;
+    }
+
+    .platform-content.active {
+      display: block;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @media (max-width: 600px) {
+      .panels {
+        flex-direction: column;
+      }
+
+      body {
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1>INSTALL VERIFICA GOVBR</h1>
+  </div>
+
+  <div class="panels">
+    <button class="panel-btn active" onclick="selectPanel('web')" id="panel-web">
+      <span class="panel-icon">🖥</span>
+      <span>Install for web</span>
+      <span class="panel-status">Not installed</span>
+    </button>
+    <button class="panel-btn" onclick="selectPanel('mobile')" id="panel-mobile">
+      <span class="panel-icon">📱</span>
+      <span>Install for mobile</span>
+      <span class="panel-status">Not installed</span>
+    </button>
+  </div>
+
+  <div class="selection-indicator">
+    ( selected: <span id="selected-panel">WEB</span> )
+  </div>
+
+  <div class="content">
+    <!-- WEB CONTENT -->
+    <div id="content-web" class="tab-content active">
+      <div class="section">
+        <div class="section-title">(1) VERIFY DOMAIN</div>
+        <div class="section-divider"></div>
+        <p class="section-desc">
+          To verify your web application domain, add the following TXT record
+          to the DNS of the domain where VERIFICA GOVBR will be used.
+        </p>
+        <div class="code-block">
+          <div class="code-row"><span class="code-label">Host / Alias :</span><span class="code-value">@</span></div>
+          <div class="code-row"><span class="code-label">Type :</span><span class="code-value">TXT</span></div>
+          <div class="code-row"><span class="code-label">Value :</span><span class="code-value">VERIFICA-GOVBR=lrG7891Wrtt</span></div>
+          <div class="code-row"><span class="code-label">TTL :</span><span class="code-value">3600</span></div>
+        </div>
+        <div class="copy-btn-container">
+          <button class="copy-btn" onclick="copyText('VERIFICA-GOVBR=lrG7891Wrtt', this)">Copy code</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">(2) ADD VERIFICA GOVBR TO YOUR PROJECT</div>
+        <div class="section-divider"></div>
+        <div class="code-block">
+          <pre>$ npm install @govbr/verifica-govbr-widget</pre>
+        </div>
+        <div class="copy-btn-container">
+          <button class="copy-btn" onclick="copyText('npm install @govbr/verifica-govbr-widget', this)">Copy code</button>
+        </div>
+
+        <p class="section-desc" style="margin-top: 1.5rem;">
+          To initialize VERIFICA GOVBR, copy and paste this code snippet in all
+          pages or in a common component where the widget should appear.
+        </p>
+        <p class="warning">⚠ This configuration must be done in the verifier's code.</p>
+        <div class="code-block">
+          <pre>import VerificaGovBR from '@govbr/verifica-govbr-widget';
+
+VerificaGovBR({
+  app_id: 'lrG7891Wrtt', // application identifier
+});</pre>
+        </div>
+        <div class="copy-btn-container">
+          <button class="copy-btn" onclick="copyText(`import VerificaGovBR from '@govbr/verifica-govbr-widget';
+
+VerificaGovBR({
+  app_id: 'lrG7891Wrtt', // application identifier
+});`, this)">Copy code</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MOBILE CONTENT -->
+    <div id="content-mobile" class="tab-content">
+      <div class="section">
+        <div class="section-title">(1) ADD VERIFICA GOVBR TO YOUR PROJECT</div>
+        <div class="section-divider"></div>
+        <div class="code-block">
+          <pre>$ npm install @govbr/verifica-govbr-react-native</pre>
+        </div>
+        <div class="copy-btn-container">
+          <button class="copy-btn" onclick="copyText('npm install @govbr/verifica-govbr-react-native', this)">Copy code</button>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">(2) SELECT PLATFORM</div>
+        <div class="section-divider"></div>
+        <div class="platform-tabs">
+          <button class="platform-btn active" onclick="selectPlatform('ios')" id="platform-ios">iOS</button>
+          <button class="platform-btn" onclick="selectPlatform('android')" id="platform-android">ANDROID</button>
+        </div>
+      </div>
+
+      <!-- iOS Content -->
+      <div id="platform-content-ios" class="platform-content active">
+        <div class="section">
+          <div class="section-title">(3) iOS — AppDelegate CONFIGURATION</div>
+          <div class="section-divider"></div>
+          <p class="section-desc">Add the code below to the AppDelegate class of your iOS application.</p>
+          <div class="code-block">
+            <pre>@import UIKit;
+#import &lt;VerificaGovBRModule.h&gt;
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+  [VerificaGovBRModule initialize:
+    @"ios_sdk-a229165c59e9d8fce2274b631dfd188b1e31cebb"
+    withAppId:@"lrG7891Wrtt"];
+
+  return YES;
+}</pre>
+          </div>
+          <div class="copy-btn-container">
+            <button class="copy-btn" onclick="copyText(`@import UIKit;
+#import <VerificaGovBRModule.h>
+
+@implementation AppDelegate
+
+- (BOOL)application:(UIApplication *)application
+    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+
+  [VerificaGovBRModule initialize:
+    @\"ios_sdk-a229165c59e9d8fce2274b631dfd188b1e31cebb\"
+    withAppId:@\"lrG7891Wrtt\"];
+
+  return YES;
+}`, this)">Copy code</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">(4) USER LOGIN AND WIDGET DISPLAY</div>
+          <div class="section-divider"></div>
+          <p class="section-desc">Add this JavaScript snippet to authenticate the user and display the widget.</p>
+          <div class="code-block">
+            <pre>useEffect(() => {
+  VerificaGovBR.logInUser({
+    /* user attributes */
+  });
+
+  VerificaGovBR.setLauncherVisibility(Visibility.VISIBLE);
+}, []);</pre>
+          </div>
+          <div class="copy-btn-container">
+            <button class="copy-btn" onclick="copyText(`useEffect(() => {
+  VerificaGovBR.logInUser({
+    /* user attributes */
+  });
+
+  VerificaGovBR.setLauncherVisibility(Visibility.VISIBLE);
+}, []);`, this)">Copy code</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Android Content -->
+      <div id="platform-content-android" class="platform-content">
+        <div class="section">
+          <div class="section-title">(3) ANDROID — MainApplication CONFIGURATION</div>
+          <div class="section-divider"></div>
+          <p class="section-desc">Add the code below to the MainApplication class of your Android application.</p>
+          <div class="code-block">
+            <pre>import com.govbr.verificagovbr.VerificaGovBRModule;
+
+public class MainApplication extends Application {
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    VerificaGovBRModule.initialize(
+      "android_sdk-b339276d60f0e9gdf3385c742ege299c2f42dfcc",
+      "lrG7891Wrtt"
+    );
+  }
+}</pre>
+          </div>
+          <div class="copy-btn-container">
+            <button class="copy-btn" onclick="copyText(`import com.govbr.verificagovbr.VerificaGovBRModule;
+
+public class MainApplication extends Application {
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+
+    VerificaGovBRModule.initialize(
+      \"android_sdk-b339276d60f0e9gdf3385c742ege299c2f42dfcc\",
+      \"lrG7891Wrtt\"
+    );
+  }
+}`, this)">Copy code</button>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-title">(4) USER LOGIN AND WIDGET DISPLAY</div>
+          <div class="section-divider"></div>
+          <p class="section-desc">Add this JavaScript snippet to authenticate the user and display the widget.</p>
+          <div class="code-block">
+            <pre>useEffect(() => {
+  VerificaGovBR.logInUser({
+    /* user attributes */
+  });
+
+  VerificaGovBR.setLauncherVisibility(Visibility.VISIBLE);
+}, []);</pre>
+          </div>
+          <div class="copy-btn-container">
+            <button class="copy-btn" onclick="copyText(`useEffect(() => {
+  VerificaGovBR.logInUser({
+    /* user attributes */
+  });
+
+  VerificaGovBR.setLauncherVisibility(Visibility.VISIBLE);
+}, []);`, this)">Copy code</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function selectPanel(panel) {
+      document.getElementById('panel-web').classList.toggle('active', panel === 'web');
+      document.getElementById('panel-mobile').classList.toggle('active', panel === 'mobile');
+      document.getElementById('content-web').classList.toggle('active', panel === 'web');
+      document.getElementById('content-mobile').classList.toggle('active', panel === 'mobile');
+      document.getElementById('selected-panel').textContent = panel.toUpperCase();
+    }
+
+    function selectPlatform(platform) {
+      document.getElementById('platform-ios').classList.toggle('active', platform === 'ios');
+      document.getElementById('platform-android').classList.toggle('active', platform === 'android');
+      document.getElementById('platform-content-ios').classList.toggle('active', platform === 'ios');
+      document.getElementById('platform-content-android').classList.toggle('active', platform === 'android');
+    }
+
+    function copyText(text, btn) {
+      navigator.clipboard.writeText(text).then(() => {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => {
+          btn.textContent = 'Copy code';
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+  </script>
+</body>
+</html>
