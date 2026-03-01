@@ -18,9 +18,6 @@ Proof of concept for age verification using the OpenID4VP (Verifiable Presentati
 perna/
   eca-context.jsonld          # JSON-LD context da credencial ECA / ECA credential JSON-LD context
   Caddyfile                   # Caddy: serve eca-context.jsonld na porta 5500 / on port 5500
-  hairy_leg.jpg               # Imagem de conteudo adulto / Adult content image
-  nao/index.html              # Pagina de rejeicao / Rejection page
-  conteudo_adulto/index.html # Pagina de conteudo adulto / Adult content page
   vanillajs/                  # Implementacao vanilla JS / Vanilla JS implementation
   react/                      # Implementacao React / React implementation
   scripts/                    # Scripts de simulacao de wallet / Wallet simulation scripts
