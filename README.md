@@ -20,7 +20,7 @@ perna/
   Caddyfile                   # Caddy: serve eca-context.jsonld na porta 5500 / on port 5500
   hairy_leg.jpg               # Imagem de conteudo adulto / Adult content image
   nao/index.html              # Pagina de rejeicao / Rejection page
-  conteudo_erotico/index.html # Pagina de conteudo adulto / Adult content page
+  conteudo_adulto/index.html # Pagina de conteudo adulto / Adult content page
   vanillajs/                  # Implementacao vanilla JS / Vanilla JS implementation
   react/                      # Implementacao React / React implementation
   scripts/                    # Scripts de simulacao de wallet / Wallet simulation scripts
@@ -79,8 +79,8 @@ cd perna/scripts
 # Instalar dependencias (primeira vez) / Install dependencies (first time)
 npm install
 
-# Happy path: isOver18=true, assinatura valida → /conteudo_erotico/
-# Happy path: isOver18=true, valid signature → /conteudo_erotico/
+# Happy path: isOver18=true, assinatura valida → /conteudo_adulto/
+# Happy path: isOver18=true, valid signature → /conteudo_adulto/
 node simulate-wallet-happy.mjs req_xxx
 
 # Unhappy path: isOver18=false → /nao/
@@ -113,6 +113,6 @@ Usuario/User          Webapp              Backend (Docker)        Wallet (script
      |                   |<-- vcStatus, vc ------|                      |
      |                   |                      |                      |
      |<-- Redirect ------|                      |                      |
-     |  /conteudo_erotico/ (SUCCESS + isOver18)                        |
+     |  /conteudo_adulto/ (SUCCESS + isOver18)                        |
      |  /nao/              (caso contrario / otherwise)                |
 ```

@@ -71,7 +71,7 @@ export default function App() {
     const isOver18 = subject?.isOver18 === true;
 
     if (isValid && isOver18) {
-      window.location.href = "/conteudo_erotico/";
+      window.location.href = "/conteudo_adulto/";
     } else {
       window.location.href = "/nao/";
     }

@@ -39,7 +39,7 @@ The SDK does all the heavy lifting. The app code is minimal:
 1. Usuario clica "Verificar" → monta o componente `<OpenID4VPVerification>` / User clicks "Verificar" → mounts the `<OpenID4VPVerification>` component
 2. O SDK cria a VP request, gera o QR code e faz polling automaticamente / The SDK creates the VP request, generates the QR code, and polls automatically
 3. Callback `onVPProcessed` recebe o resultado e verifica `vcStatus` e `isOver18` / `onVPProcessed` callback receives the result and checks `vcStatus` and `isOver18`
-4. Redireciona para `/conteudo_erotico/` ou `/nao/` / Redirects to `/conteudo_erotico/` or `/nao/`
+4. Redireciona para `/conteudo_adulto/` ou `/nao/` / Redirects to `/conteudo_adulto/` or `/nao/`
 
 ### Interceptor de fetch
 
@@ -55,9 +55,9 @@ The Vite dev server proxies `/v1/verify/*` to `localhost:8080`, avoiding CORS is
 
 ### Paginas estaticas
 
-As paginas de resultado (`/nao/`, `/conteudo_erotico/`) sao HTMLs estaticos em `public/`, servidos por um plugin Vite customizado que intercepta essas rotas antes do SPA fallback.
+As paginas de resultado (`/nao/`, `/conteudo_adulto/`) sao HTMLs estaticos em `public/`, servidos por um plugin Vite customizado que intercepta essas rotas antes do SPA fallback.
 
-The result pages (`/nao/`, `/conteudo_erotico/`) are static HTMLs in `public/`, served by a custom Vite plugin that intercepts these routes before the SPA fallback.
+The result pages (`/nao/`, `/conteudo_adulto/`) are static HTMLs in `public/`, served by a custom Vite plugin that intercepts these routes before the SPA fallback.
 
 ## Arquivos / Files
 
@@ -68,4 +68,4 @@ The result pages (`/nao/`, `/conteudo_erotico/`) are static HTMLs in `public/`, 
 | `src/index.css` | Estilos (fundo preto, fonte monospace) / Styles (black bg, monospace font) |
 | `vite.config.ts` | Proxy API + plugin para paginas estaticas / API proxy + static pages plugin |
 | `public/nao/` | Pagina de rejeicao / Rejection page |
-| `public/conteudo_erotico/` | Pagina de conteudo adulto / Adult content page |
+| `public/conteudo_adulto/` | Pagina de conteudo adulto / Adult content page |
